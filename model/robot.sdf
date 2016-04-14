@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+	<model name="aslr">
+		<static>false</static>
+		<!-- links will collide with each other, though joined links won't -->
+		<self_collide>true</self_collide>
+		<pose>0 0 0 0 0 0</pose><!-- gazebo treats +Z as up -->
+		
+		<!-- fix base by joining it to 'world' -->
+		<joint name="j_base" type="fixed">
+			<parent>world</parent><child>l_base</child>
+		</joint>
+		<link name="l_base">
+			<pose>0 0 0 0 0 0</pose><gravity>false</gravity>
+			<visual name="v_torso"><pose>0 0 -0.7083 0 0 0</pose>
+				<geometry><box><size>0.25 0.15 1.3266</size></box></geometry>
+			</visual>
+			<collision name="c_torso"><pose>0 0 -0.7083 0 0 0</pose>
+				<geometry><box><size>0.25 0.15 1.3266</size></box></geometry>
+			</collision>
+			<visual name="v_collar"><pose>0 0 0 0 0 0</pose>
+				<geometry><box><size>0.40 0.15 0.09</size></box></geometry>
+			</visual>
+			<collision name="c_collar"><pose>0 0 0 0 0 0</pose>
+				<geometry><box><size>0.40 0.15 0.09</size></box></geometry>
+			</collision>
+		</link>
+		
+		<joint name="j_Rshoulder_pitch" type="revolute">
+			<parent>l_base</parent><child>l_Rshoulder</child>
+			<axis><xyz>1 0 0</xyz><limit><!-- shoulder pitch -->
+				<upper>2.3561944901923449288469825374596</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>8.4</effort><!-- not geared - gears removed from design -->
+			</limit></axis>
+		</joint>
+		<link name="l_Rshoulder">
+			<pose>0.25717 0 0 0 0 0</pose>
+			<inertial><mass>0.9043362</mass><pose>-0.019871708 0 0 0 0 0</pose></inertial>
+		</link>
+		<joint name="j_Rshoulder_roll" type="revolute">
+			<parent>l_Rshoulder</parent><child>l_Rarm_upper</child>
+			<axis><xyz>0 -1 0</xyz><limit><!-- shoulder roll -->
+				<upper>2.6179938779914943653855361527329</upper>
+				<lower>0</lower>
+				<effort>16.8</effort>
+			</limit></axis>
+		</joint>
+		
+		<joint name="j_Lshoulder_pitch" type="revolute">
+			<parent>l_base</parent><child>l_Lshoulder</child>
+			<axis><xyz>1 0 0</xyz><limit><!-- shoulder pitch -->
+				<upper>2.3561944901923449288469825374596</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>8.4</effort><!-- not geared - gears removed from design -->
+			</limit></axis>
+		</joint>
+		<link name="l_Lshoulder">
+			<pose>-0.25717 0 0 0 0 0</pose>
+			<inertial><mass>0.9043362</mass><pose>0.019871708 0 0 0 0 0</pose></inertial>
+		</link>
+		<joint name="j_Lshoulder_roll" type="revolute">
+			<parent>l_Lshoulder</parent><child>l_Larm_upper</child>
+			<axis><xyz>0 -1 0</xyz><limit><!-- shoulder roll -->
+				<upper>0</upper>
+				<lower>-2.6179938779914943653855361527329</lower>
+				<effort>16.8</effort>
+			</limit></axis>
+		</joint>
+		
+		<link name="l_Rarm_upper">
+			<pose>0.25717 0 0 0 0 0</pose>
+			<inertial><mass>0.5236821</mass><pose>-0.0027099295 0 -0.1464027876 0 0 0</pose></inertial>
+			<visual name="v_arm"><pose>0 0 -0.09401 0 0 0</pose> 
+				<geometry><box><size>0.04296 0.1125 0.18802</size></box></geometry>
+			</visual>
+			<collision name="c_arm"><pose>0 0 -0.09401 0 0 0</pose> 
+				<geometry><box><size>0.04296 0.1125 0.18802</size></box></geometry>
+			</collision>
+			<collision name="c_yaw"><pose>-0.00696 0 -0.178205 0 0 0</pose> 
+				<geometry><box><size>0.09003 0.1125 0.07963</size></box></geometry>
+			</collision>
+		</link>
+		<link name="l_Larm_upper">
+			<pose>-0.25717 0 0 0 0 0</pose>
+			<inertial><mass>0.5236821</mass><pose>0.0027099295 0 -0.1464027876 0 0 0</pose></inertial>
+			<visual name="v_arm"><pose>0 0 -0.09401 0 0 0</pose> 
+				<geometry><box><size>0.04296 0.1125 0.18802</size></box></geometry>
+			</visual>
+			<collision name="c_arm"><pose>0 0 -0.09401 0 0 0</pose> 
+				<geometry><box><size>0.04296 0.1125 0.18802</size></box></geometry>
+			</collision>
+			<collision name="c_yaw"><pose>0.00696 0 -0.178205 0 0 0</pose> 
+				<geometry><box><size>0.09003 0.1125 0.07963</size></box></geometry>
+			</collision>
+		</link>
+		
+		<joint name="j_Relbow" type="universal">
+			<parent>l_Rarm_upper</parent><child>l_Rarm_lower</child>
+			<axis><xyz>0 0 1</xyz><limit><!-- shoulder yaw -->
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-2.3561944901923449288469825374596</lower>
+				<effort>8.4</effort>
+			</limit></axis>
+			<axis2><xyz>1 0 0</xyz><limit><!-- elbow pitch -->
+				<upper>2.2689280275926284500007979990352</upper>
+				<lower>0</lower>
+				<effort>8.4</effort>
+			</limit></axis2>
+		</joint>
+		<joint name="j_Lelbow" type="universal">
+			<parent>l_Larm_upper</parent><child>l_Larm_lower</child>
+			<axis><xyz>0 0 1</xyz><limit><!-- shoulder yaw -->
+				<upper>2.3561944901923449288469825374596</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>8.4</effort>
+			</limit></axis>
+			<axis2><xyz>1 0 0</xyz><limit><!-- elbow pitch -->
+				<upper>2.2689280275926284500007979990352</upper>
+				<lower>0</lower>
+				<effort>8.4</effort>
+			</limit></axis2>
+		</joint>
+		
+		<link name="l_Rarm_lower">
+			<pose>0.25717 0 -0.24331 0 0 0</pose>
+			<inertial><mass>0.3843216</mass><pose>0 0 -0.1524942453 0 0 0</pose></inertial>
+			<visual name="v_arm"><pose>0 0 -0.092515 0 0 0</pose>
+				<geometry><box><size>0.078 0.04332 0.18503</size></box></geometry>
+			</visual>
+			<collision name="c_arm"><pose>0 0 -0.092515 0 0 0</pose>
+				<geometry><box><size>0.078 0.04332 0.18503</size></box></geometry>
+			</collision>
+			<collision name="c_roll"><pose>0 0.00401 -0.17852 0 0 0</pose> 
+				<geometry><box><size>0.078 0.08818 0.07302</size></box></geometry>
+			</collision>
+		</link>
+		<link name="l_Larm_lower">
+			<pose>-0.25717 0 -0.24331 0 0 0</pose>
+			<inertial><mass>0.3843216</mass><pose>0 0 -0.1524942453 0 0 0</pose></inertial>
+			<visual name="v_arm"><pose>0 0 -0.092515 0 0 0</pose>
+				<geometry><box><size>0.078 0.04332 0.18503</size></box></geometry>
+			</visual>
+			<collision name="c_arm"><pose>0 0 -0.092515 0 0 0</pose>
+				<geometry><box><size>0.078 0.04332 0.18503</size></box></geometry>
+			</collision>
+			<collision name="c_roll"><pose>0 0.00401 -0.17852 0 0 0</pose> 
+				<geometry><box><size>0.078 0.08818 0.07302</size></box></geometry>
+			</collision>
+		</link>
+		
+		<joint name="j_Rwrist" type="universal">
+			<parent>l_Rarm_lower</parent><child>l_Rwrist_yaw</child>
+			<axis><xyz>0 0 1</xyz><limit><!-- wrist roll -->
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
+				<effort>6</effort>
+			</limit></axis>
+			<axis2><xyz>0 -1 0</xyz><limit><!-- wrist pitch -->
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>2.5</effort>
+			</limit></axis2>
+		</joint>
+		<link name="l_Rwrist_yaw">
+			<pose>0.25717 0 -0.48883 0 0 0</pose>
+			<inertial><mass>0.0312228</mass><!--CoG deemed negligible--></inertial>
+			<visual name="v_wrist">
+				<pose>0 0 -0.029535 0 0 0</pose>
+				<geometry><box><size>0.042 0.034 0.05907</size></box></geometry>
+			</visual>
+			<collision name="c_wrist">
+				<pose>0 0 -0.029535 0 0 0</pose>
+				<geometry><box><size>0.042 0.034 0.05907</size></box></geometry>
+			</collision>
+		</link>
+		<joint name="j_Rwrist_yaw" type="revolute">
+			<parent>l_Rwrist_yaw</parent><child>l_Rhand</child>
+			<axis><xyz>1 0 0</xyz><limit>
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>1.50042</effort>
+			</limit></axis>
+		</joint>
+		
+		<joint name="j_Lwrist" type="universal">
+			<parent>l_Larm_lower</parent><child>l_Lwrist_yaw</child>
+			<axis><xyz>0 0 1</xyz><limit><!-- wrist roll -->
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
+				<effort>6</effort>
+			</limit></axis>
+			<axis2><xyz>0 -1 0</xyz><limit><!-- wrist pitch -->
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>2.5</effort>
+			</limit></axis2>
+		</joint>
+		<link name="l_Lwrist_yaw">
+			<pose>-0.25717 0 -0.48883 0 0 0</pose>
+			<inertial><mass>0.0312228</mass><!--CoG deemed negligible--></inertial>
+			<visual name="v_wrist">
+				<pose>0 0 -0.029535 0 0 0</pose>
+				<geometry><box><size>0.042 0.034 0.05907</size></box></geometry>
+			</visual>
+			<collision name="c_wrist">
+				<pose>0 0 -0.029535 0 0 0</pose>
+				<geometry><box><size>0.042 0.034 0.05907</size></box></geometry>
+			</collision>
+		</link>
+		<joint name="j_Lwrist_yaw" type="revolute">
+			<parent>l_Lwrist_yaw</parent><child>l_Lhand</child>
+			<axis><xyz>1 0 0</xyz><limit>
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
+				<effort>1.50042</effort>
+			</limit></axis>
+		</joint>
+		
+		<link name="l_Rhand">
+			<pose>0.25717 0 -0.53493 0 0 0</pose>
+			<inertial><mass>0.373697</mass><pose>-0.01873 -0.01484 -0.10708 0 0 0</pose></inertial>
+			<visual name="v_palm"><pose>0 0 -0.04923 0 0 0</pose>
+				<geometry><box><size>0.03404 0.10637 0.12</size></box></geometry>
+			</visual>
+			<collision name="c_palm"><pose>0 0 -0.04923 0 0 0</pose>
+				<geometry><box><size>0.03404 0.10637 0.12</size></box></geometry>
+			</collision>
+			<collision name="c_thumb"><pose>-0.031345 0.03811 -0.085 0 0 0</pose>
+				<geometry><cylinder><radius>0.06</radius><length>0.10</length></cylinder></geometry>
+			</collision>
+			<collision name="c_fingers"><pose>-0.0275 0.005 -0.15 0 0 0</pose>
+				<geometry><box><size>0.085 0.11 0.20</size></box></geometry>
+			</collision>
+		</link>
+		<link name="l_Lhand">
+			<pose>-0.25717 0 -0.53493 0 0 0</pose>
+			<inertial><mass>0.373697</mass><pose>0.01873 -0.01484 -0.10708 0 0 0</pose></inertial>
+			<visual name="v_palm"><pose>0 0 -0.04923 0 0 0</pose>
+				<geometry><box><size>0.03404 0.10637 0.12</size></box></geometry>
+			</visual>
+			<collision name="c_palm"><pose>0 0 -0.04923 0 0 0</pose>
+				<geometry><box><size>0.03404 0.10637 0.12</size></box></geometry>
+			</collision>
+			<collision name="c_thumb"><pose>0.031345 0.03811 -0.085 0 0 0</pose>
+				<geometry><cylinder><radius>0.06</radius><length>0.10</length></cylinder></geometry>
+			</collision>
+			<collision name="c_fingers"><pose>0.0275 0.005 -0.15 0 0 0</pose>
+				<geometry><box><size>0.085 0.11 0.20</size></box></geometry>
+			</collision>
+		</link>
+	</model>
+</sdf>
