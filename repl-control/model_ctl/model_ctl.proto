@@ -1,0 +1,51 @@
+import "time.proto";
+
+enum JointId {
+	RSP =  0;
+	RSR =  1;
+	RSY =  2;
+	REP =  3;
+	RWR =  4;
+	RWP =  5;
+	RWY =  6;
+	RHG =  7;
+	
+	LSP =  8;
+	LSR =  9;
+	LSY = 10;
+	LEP = 11;
+	LWR = 12;
+	LWP = 13;
+	LWY = 14;
+	LHG = 15;
+	
+	NUM_JOINTS = 16;
+}
+
+message ModelState {
+	required double RSP =  1;
+	required double RSR =  2;
+	required double RSY =  3;
+	required double REP =  4;
+	required double RWR =  5;
+	required double RWP =  6;
+	required double RWY =  7;
+	optional double RHG =  8;
+	
+	required double LSP =  9;
+	required double LSR = 10;
+	required double LSY = 11;
+	required double LEP = 12;
+	required double LWR = 13;
+	required double LWP = 14;
+	required double LWY = 15;
+	optional double LHG = 16;
+	
+	required gazebo.msgs.Time time = 17;
+}
+
+message ModelCmd {
+	required string cmd = 1;
+	optional JointId joint = 2;
+	optional double target = 3;
+}
