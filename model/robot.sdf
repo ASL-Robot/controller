@@ -7,9 +7,7 @@
 		<pose>0 0 0 0 0 0</pose><!-- gazebo treats +Z as up -->
 		
 		<!-- fix base by joining it to 'world' -->
-		<joint name="j_base" type="fixed">
-			<parent>world</parent><child>l_base</child>
-		</joint>
+		<joint name="j_base" type="fixed"><parent>world</parent><child>l_base</child></joint>
 		<link name="l_base">
 			<pose>0 0 0 0 0 0</pose><gravity>false</gravity>
 			<visual name="v_torso"><pose>0 0 -0.7083 0 0 0</pose>
@@ -26,16 +24,14 @@
 			</collision>
 		</link>
 		
-		<joint name="neck" type="fixed">
-			<parent>l_base</parent><child>head</child>
-		</joint>
-		<link name="head">
-			<pose>0 0 0.2073 0 0 0</pose>
-			<visual name="v_head">
-				<geometry><sphere><radius>0.11</radius></sphere></geometry>
+		<joint name="j_neck" type="fixed"><parent>l_base</parent><child>l_head</child></joint>
+		<link name="l_head">
+			<pose>0 0.033315 0.2073 0 0 0</pose>
+			<visual name="v_head"><pose>0 0 0 1.5707 0 0</pose>
+				<geometry><cylinder><radius>0.11</radius><length>0.01</length></cylinder></geometry>
 			</visual>
-			<collision name="c_head">
-				<geometry><sphere><radius>0.11</radius></sphere></geometry>
+			<collision name="c_head"><pose>0 0 0 1.5707 0 0</pose>
+				<geometry><cylinder><radius>0.11</radius><length>0.01</length></cylinder></geometry>
 			</collision>
 		</link>
 		
