@@ -12,10 +12,14 @@
 #include <gazebo/math/Angle.hh>
 #include <gazebo/common/Time.hh>
 #include <gazebo/common/Timer.hh>
-#include <gazebo/common/PID.hh>
 #include <gazebo/physics/PhysicsTypes.hh>
 #include <gazebo/transport/TransportTypes.hh>
 #include "model_ctl.pb.h"
+
+using ModelStatePtr = boost::shared_ptr<ModelState>;
+using ConstModelStatePtr = const boost::shared_ptr<const ModelState>;
+using ModelCmdPtr = boost::shared_ptr<ModelCmd>;
+using ConstModelCmdPtr = const boost::shared_ptr<const ModelCmd>;
 
 /*enum JointId : unsigned {
 	// shoulder (pitch/roll/yaw), elbow (pitch), wrist (roll/pitch/yaw), hand gesture
@@ -33,10 +37,12 @@ static const std::array<std::string, JointId::NUM_JOINTS> idToName = {
 class ModelController {
 private:
 	struct JointData {
+		double (ModelState::* getFun)() const;
+		void   (ModelState::* setFun)(double);
 		gazebo::physics::JointPtr ptr;
 		unsigned                  axis;
-		gazebo::common::PID       pid;
 		double                    target;
+		double                    velocity;
 
 		gazebo::physics::Joint* operator ->() const noexcept(noexcept(ptr.operator bool())) { return ptr.operator ->(); }
 		explicit operator bool() const noexcept(noexcept(ptr.operator bool())) { return ptr.operator bool(); }
@@ -45,37 +51,24 @@ private:
 	std::array<JointData, JointId::NUM_JOINTS> joints;
 	gazebo::physics::ModelPtr model;
 	gazebo::common::Time prevUpdateTime;
+	gazebo::event::ConnectionPtr moveTrigger;
 
+	ModelState state;
 	gazebo::transport::NodePtr node;
 	gazebo::transport::PublisherPtr posePub;
-	gazebo::event::ConnectionPtr pidTrigger;
 	gazebo::event::ConnectionPtr pubTrigger;
 
 public:
 	bool Init(gazebo::physics::ModelPtr loadedModel);
-	void ProcessPid();
+	void SeekPose();
 	void PublishPose();
 
 	gazebo::math::Angle GetSingleJointPosition(JointId id);
 	std::array<gazebo::math::Angle, JointId::NUM_JOINTS> GetAllJointPositions();
-	void MoveSingleJoint(JointId id, gazebo::math::Angle target);
-	void MoveAllJoints(std::array<gazebo::math::Angle, JointId::NUM_JOINTS> targets);
-	void TeleportSingleJoint(JointId id, gazebo::math::Angle target);
+	void MoveJoint(JointId id, gazebo::math::Angle target, double duration);
+	void MoveAllJoints(std::array<std::pair<gazebo::math::Angle, double>, JointId::NUM_JOINTS> targets);
+	void TeleportJoint(JointId id, gazebo::math::Angle target);
 	void TeleportAllJoints(std::array<gazebo::math::Angle, JointId::NUM_JOINTS> targets);
-	double GetJointGainP(JointId id) { return joints[id].pid.GetPGain(); }
-	void SetJointGainP(JointId id, double gain) { return joints[id].pid.SetPGain(gain); }
-	double GetJointGainI(JointId id) { return joints[id].pid.GetIGain(); }
-	void SetJointGainI(JointId id, double gain) { return joints[id].pid.SetIGain(gain); }
-	double GetJointMaxI(JointId id) { return joints[id].pid.GetIMax(); }
-	void SetJointMaxI(JointId id, double val) { return joints[id].pid.SetIMax(val); }
-	double GetJointMinI(JointId id) { return joints[id].pid.GetIMin(); }
-	void SetJointMinI(JointId id, double val) { return joints[id].pid.SetIMin(val); }
-	double GetJointGainD(JointId id) { return joints[id].pid.GetDGain(); }
-	void SetJointGainD(JointId id, double gain) { return joints[id].pid.SetDGain(gain); }
-	double GetJointMaxCmd(JointId id) { return joints[id].pid.GetCmdMax(); }
-	void SetJointMaxCmd(JointId id, double val) { return joints[id].pid.SetCmdMax(val); }
-	double GetJointMinCmd(JointId id) { return joints[id].pid.GetCmdMin(); }
-	void SetJointMinCmd(JointId id, double val) { return joints[id].pid.SetCmdMin(val); }
 };
 
 #endif /* MODELCONTROLLER_H_ */

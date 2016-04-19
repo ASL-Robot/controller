@@ -10,27 +10,71 @@
 #include <gazebo/msgs/msgs.hh>
 #include <iostream>
 
+#include "model_ctl/ModelController.h"
+
 using namespace gazebo;
 
 int main(int argc, char** argv) {
 	if (!client::setup(argc, argv)) return 1;
 	transport::NodePtr node(new transport::Node());
 	node->Init("default");
-	transport::PublisherPtr pub = node->Advertise<msgs::GzString>("~/model_cmd");
+	transport::PublisherPtr pub = node->Advertise<ModelCmd>("~/model_cmd");
+	ModelCmd cmd;
 
-	std::string line = "";
 	std::skipws(std::cin);
-	if (!std::getline(std::cin, line))
-		std::cerr << "Error reading command!" << std::endl;
-	else do {
-		std::cerr << "Sending command: " << line << std::endl;
-		msgs::GzString msg; msg.set_data(line);
-		pub->Publish(msg);
-		if (!std::getline(std::cin, line)) {
+	for (;;) {
+		std::string action, motor; double target, duration;
+		std::cout << "cmd> "; std::cout.flush();
+		std::cin >> action;
+		if (!std::cin) {
 			std::cerr << "Error reading command!" << std::endl;
 			break;
 		}
-	} while (line != "exit");
+		if (action == "exit" || action == "quit") break;
+
+		if (action == "pose") {
+			std::cout << "Pose will be echoed to Gazebo's log." << std::endl;
+			cmd.set_action(ModelCmdAction::ECHO_POSE);
+		} else if (action == "move" || action == "tp") {
+			std::cin >> motor >> target;
+
+			auto motorIter = std::find(idToName.begin(), idToName.end(), motor);
+			if (motorIter == idToName.end()) {
+				std::cerr << "Motor " << motor << " isn't a valid ID" << std::endl;
+				continue;
+			}
+			JointId motorIndex = (JointId) std::distance(idToName.begin(), motorIter);
+			cmd.set_joint(motorIndex);
+
+			if (!std::isfinite(target)) {
+				std::cerr << "Target " << target << " isn't finite" << std::endl;
+				continue;
+			}
+			cmd.set_target(target);
+
+			if (action == "move") {
+				std::cin >> duration;
+				if (!std::isfinite(duration) || duration <= 0) {
+					std::cerr << "Duration " << duration << " isn't finite and positive" << std::endl;
+					continue;
+				}
+				cmd.set_duration(duration);
+			}
+
+			std::cout << "Using motor id " << motorIndex << " and target " << target << ": ";
+			if (action == "move") {
+				std::cout << "Moving for " << duration << " ..." << std::endl; cmd.set_action(ModelCmdAction::JOINT_MOVE);
+			} else if (action == "tp") {
+				std::cout << "Teleporting ..." << std::endl; cmd.set_action(ModelCmdAction::JOINT_TELEPORT);
+			}
+		} else {
+			std::cerr << "Invalid command '" << action << "'" << std::endl;
+			continue;
+		}
+
+		pub->Publish(cmd);
+	}
+
 	transport::fini();
 	gazebo::client::shutdown();
 	return 0;

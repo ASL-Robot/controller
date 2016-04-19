@@ -44,8 +44,15 @@ message ModelState {
 	required gazebo.msgs.Time time = 17;
 }
 
+enum ModelCmdAction {
+	ECHO_POSE = 0;
+	JOINT_MOVE = 1;
+	JOINT_TELEPORT = 2;
+}
+
 message ModelCmd {
-	required string cmd = 1;
+	required ModelCmdAction action = 1;
 	optional JointId joint = 2;
 	optional double target = 3;
+	optional double duration = 4;
 }
