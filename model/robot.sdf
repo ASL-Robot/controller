@@ -107,8 +107,8 @@
 		<joint name="j_Relbow" type="universal">
 			<parent>l_Rarm_upper</parent><child>l_Rarm_lower</child>
 			<axis><xyz>0 0 1</xyz><limit><!-- shoulder yaw -->
-				<upper>0.78539816339744830961566084581988</upper>
-				<lower>-2.3561944901923449288469825374596</lower>
+				<upper>2.3561944901923449288469825374596</upper>
+				<lower>-0.78539816339744830961566084581988</lower>
 				<effort>8.4</effort>
 			</limit></axis>
 			<axis2><xyz>1 0 0</xyz><limit><!-- elbow pitch -->
@@ -120,8 +120,8 @@
 		<joint name="j_Lelbow" type="universal">
 			<parent>l_Larm_upper</parent><child>l_Larm_lower</child>
 			<axis><xyz>0 0 1</xyz><limit><!-- shoulder yaw -->
-				<upper>2.3561944901923449288469825374596</upper>
-				<lower>-0.78539816339744830961566084581988</lower>
+				<upper>0.78539816339744830961566084581988</upper>
+				<lower>-2.3561944901923449288469825374596</lower>
 				<effort>8.4</effort>
 			</limit></axis>
 			<axis2><xyz>1 0 0</xyz><limit><!-- elbow pitch -->
@@ -166,8 +166,8 @@
 				<effort>6</effort>
 			</limit></axis>
 			<axis2><xyz>0 -1 0</xyz><limit><!-- wrist pitch -->
-				<upper>0.78539816339744830961566084581988</upper>
-				<lower>-0.78539816339744830961566084581988</lower>
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
 				<effort>2.5</effort>
 			</limit></axis2>
 		</joint>
@@ -186,8 +186,8 @@
 		<joint name="j_Rwrist_yaw" type="revolute">
 			<parent>l_Rwrist_yaw</parent><child>l_Rhand</child>
 			<axis><xyz>1 0 0</xyz><limit>
-				<upper>0.78539816339744830961566084581988</upper>
-				<lower>-0.78539816339744830961566084581988</lower>
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
 				<effort>1.50042</effort>
 			</limit></axis>
 		</joint>
@@ -200,8 +200,8 @@
 				<effort>6</effort>
 			</limit></axis>
 			<axis2><xyz>0 -1 0</xyz><limit><!-- wrist pitch -->
-				<upper>0.78539816339744830961566084581988</upper>
-				<lower>-0.78539816339744830961566084581988</lower>
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
 				<effort>2.5</effort>
 			</limit></axis2>
 		</joint>
@@ -220,8 +220,8 @@
 		<joint name="j_Lwrist_yaw" type="revolute">
 			<parent>l_Lwrist_yaw</parent><child>l_Lhand</child>
 			<axis><xyz>1 0 0</xyz><limit>
-				<upper>0.78539816339744830961566084581988</upper>
-				<lower>-0.78539816339744830961566084581988</lower>
+				<upper>1.5707963267948966192313216916398</upper>
+				<lower>-1.5707963267948966192313216916398</lower>
 				<effort>1.50042</effort>
 			</limit></axis>
 		</joint>
