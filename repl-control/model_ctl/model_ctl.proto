@@ -48,6 +48,7 @@ enum ModelCmdAction {
 	ECHO_POSE = 0;
 	JOINT_MOVE = 1;
 	JOINT_TELEPORT = 2;
+	MODEL_RESET = 3;
 }
 
 message ModelCmd {
@@ -56,3 +57,15 @@ message ModelCmd {
 	optional double target = 3;
 	optional double duration = 4;
 }
+
+message ModelScriptAction {
+	required JointId joint = 1;
+	required double target = 2;
+	required double startTime = 3;
+	required double endTime = 4;
+}
+
+message ModelScript {
+	repeated ModelScriptAction actions = 1;
+}
+

@@ -89,7 +89,7 @@ void ModelController::MoveJoint(JointId id, gazebo::math::Angle target, double d
 
 void ModelController::MoveAllJoints(std::array<std::pair<gazebo::math::Angle, double>, JointId::NUM_JOINTS> targets) {
 	for (unsigned i = JointId::RSP; i < JointId::NUM_JOINTS; ++i)
-		if (std::isfinite(targets[i].first.Radian()) && std::isfinite(targets[i].second) && targets[i].second > 0.0)
+		if (joints[i] && std::isfinite(targets[i].first.Radian()) && std::isfinite(targets[i].second) && targets[i].second >= 0.0)
 			MoveJoint(JointId(i), targets[i].first, targets[i].second);
 }
 
@@ -101,5 +101,6 @@ void ModelController::TeleportJoint(JointId id, gazebo::math::Angle target) {
 
 void ModelController::TeleportAllJoints(std::array<gazebo::math::Angle, JointId::NUM_JOINTS> targets) {
 	for (unsigned i = JointId::RSP; i < JointId::NUM_JOINTS; ++i)
-		if (std::isfinite(targets[i].Radian())) TeleportJoint(JointId(i), targets[i]);
+		if (joints[i] && std::isfinite(targets[i].Radian()))
+			TeleportJoint(JointId(i), targets[i]);
 }

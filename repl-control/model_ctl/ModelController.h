@@ -11,7 +11,6 @@
 #include <array>
 #include <gazebo/math/Angle.hh>
 #include <gazebo/common/Time.hh>
-#include <gazebo/common/Timer.hh>
 #include <gazebo/physics/PhysicsTypes.hh>
 #include <gazebo/transport/TransportTypes.hh>
 #include "model_ctl.pb.h"

@@ -19,8 +19,9 @@ int main(int argc, char** argv) {
 	transport::NodePtr node(new transport::Node());
 	node->Init("default");
 	transport::PublisherPtr pub = node->Advertise<ModelCmd>("~/model_cmd");
-	ModelCmd cmd;
+	pub->WaitForConnection();
 
+	ModelCmd cmd;
 	std::skipws(std::cin);
 	for (;;) {
 		std::string action, motor; double target, duration;
@@ -35,6 +36,9 @@ int main(int argc, char** argv) {
 		if (action == "pose") {
 			std::cout << "Pose will be echoed to Gazebo's log." << std::endl;
 			cmd.set_action(ModelCmdAction::ECHO_POSE);
+		} else if (action == "reset") {
+			std::cout << "Resetting robot's pose ..." << std::endl;
+			cmd.set_action(ModelCmdAction::MODEL_RESET);
 		} else if (action == "move" || action == "tp") {
 			std::cin >> motor >> target;
 
@@ -76,6 +80,6 @@ int main(int argc, char** argv) {
 	}
 
 	transport::fini();
-	gazebo::client::shutdown();
+	client::shutdown();
 	return 0;
 }
