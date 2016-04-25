@@ -5,10 +5,9 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.debug.1867066231" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<externalSettings>
 					<externalSetting>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/repl-control"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/Debug"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/build/Debug"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="repl-control" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/gz-template"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/gz-template/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="gz-template" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -21,11 +20,11 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="so" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.sharedLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.sharedLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.debug.1867066231" name="Debug" parent="cdt.managedbuild.config.gnu.exe.debug">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.exe.debug.1867066231" name="Debug" parent="cdt.managedbuild.config.gnu.exe.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.exe.debug.1867066231." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.exe.debug.678796604" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug.1743997800" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
-							<builder buildPath="/repl-control/build/Debug" id="de.marw.cdt.cmake.core.genmakebuilder.566930807" keepEnvironmentInBuildfile="false" name="CMake Make Builder" stopOnErr="false" superClass="de.marw.cdt.cmake.core.genmakebuilder"/>
+							<builder buildPath="/fcl-collision-monitor/build/Debug" id="de.marw.cdt.cmake.core.genmakebuilder.1878481365" stopOnErr="false" superClass="de.marw.cdt.cmake.core.genmakebuilder"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1505425827" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.2142894495" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.584110711" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
@@ -35,6 +34,8 @@
 									<listOptionValue builtIn="false" value="__cplusplus=201103"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.include.paths.914843610" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include/gazebo-7"/>
 									<listOptionValue builtIn="false" value="/usr/include/ignition/math2"/>
 									<listOptionValue builtIn="false" value="/usr/include/sdformat-4.1"/>
@@ -50,13 +51,20 @@
 								<option id="gnu.c.compiler.exe.debug.option.debugging.level.975311990" name="Debug Level" superClass="gnu.c.compiler.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.dialect.std.1432270207" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.c11" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.dialect.flags.975238484" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" value="-pthread" valueType="string"/>
+								<option id="gnu.c.compiler.option.include.paths.1012793600" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1051193557" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.debug.1189309977" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.debug">
-								<option defaultValue="true" id="gnu.c.link.option.shared.254928864" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
+								<option defaultValue="true" id="gnu.c.link.option.shared.1232218179" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
 							</tool>
-							<tool command="g++" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG} ${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1324492220" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1324492220" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.1427661781" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="repl-control"/>
+									<listOptionValue builtIn="false" value="fcl"/>
+									<listOptionValue builtIn="false" value="fcl-collisions"/>
 									<listOptionValue builtIn="false" value="gazebo"/>
 									<listOptionValue builtIn="false" value="gazebo_client"/>
 									<listOptionValue builtIn="false" value="gazebo_gui"/>
@@ -74,53 +82,71 @@
 									<listOptionValue builtIn="false" value="gazebo_math"/>
 									<listOptionValue builtIn="false" value="gazebo_ccd"/>
 									<listOptionValue builtIn="false" value="boost_thread"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_signals"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_system"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="&quot;boost_ filesystem&quot;"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_program_options"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_regex"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_iostreams"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_date_time"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="boost_atomic"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="protobuf"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="sdformat"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="ignition-math2"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OgreMain"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OgreTerrain"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OgrePaging"/>
+									<listOptionValue builtIn="false" value="boost_signals"/>
+									<listOptionValue builtIn="false" value="boost_system"/>
+									<listOptionValue builtIn="false" value="&quot;boost_ filesystem&quot;"/>
+									<listOptionValue builtIn="false" value="boost_program_options"/>
+									<listOptionValue builtIn="false" value="boost_regex"/>
+									<listOptionValue builtIn="false" value="boost_iostreams"/>
+									<listOptionValue builtIn="false" value="boost_date_time"/>
+									<listOptionValue builtIn="false" value="boost_atomic"/>
+									<listOptionValue builtIn="false" value="protobuf"/>
+									<listOptionValue builtIn="false" value="sdformat"/>
+									<listOptionValue builtIn="false" value="ignition-math2"/>
+									<listOptionValue builtIn="false" value="OgreMain"/>
+									<listOptionValue builtIn="false" value="OgreTerrain"/>
+									<listOptionValue builtIn="false" value="OgrePaging"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.104566782" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control/build/Debug}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions/Debug}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu/gazebo-7/plugins"/>
 								</option>
-								<option id="gnu.cpp.link.option.shared.1804496265" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" value="true" valueType="boolean"/>
+								<option defaultValue="true" id="gnu.cpp.link.option.shared.1648030676" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.387130917" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
-								<outputType id="cdt.managedbuild.tool.gnu.cpp.linker.output.1418080116" outputPrefix="lib" superClass="cdt.managedbuild.tool.gnu.cpp.linker.output"/>
+								<outputType id="cdt.managedbuild.tool.gnu.cpp.linker.output.so.1931640071" outputPrefix="" superClass="cdt.managedbuild.tool.gnu.cpp.linker.output.so"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.1330188644" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
+								<option id="gnu.both.asm.option.include.paths.1656504419" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1947888587" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
-			<storageModule moduleId="de.marw.cdt.cmake.core.settings">
-				<options/>
-				<defs/>
-				<undefs/>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+				<externalSettings containerId="fcl-collisions;cdt.managedbuild.config.gnu.cross.exe.debug.511647696" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/fcl-collisions"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/fcl-collisions/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="fcl-collisions" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<externalSettings containerId="repl-control;cdt.managedbuild.config.gnu.exe.debug.1867066231" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/repl-control"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/Debug"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/build/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="repl-control" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
 			</storageModule>
 		</cconfiguration>
 		<cconfiguration id="cdt.managedbuild.config.gnu.exe.release.2133639031">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.exe.release.2133639031" moduleId="org.eclipse.cdt.core.settings" name="Release">
 				<externalSettings>
 					<externalSetting>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/repl-control"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/Release"/>
-						<entry flags="RESOLVED" kind="libraryFile" name="repl-control" srcPrefixMapping="" srcRootPath=""/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/gz-template"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/gz-template/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="gz-template" srcPrefixMapping="" srcRootPath=""/>
 					</externalSetting>
 				</externalSettings>
 				<extensions>
@@ -147,6 +173,8 @@
 									<listOptionValue builtIn="false" value="__cplusplus=201103"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.include.paths.680774173" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/include/gazebo-7"/>
 									<listOptionValue builtIn="false" value="/usr/include/ignition/math2"/>
 									<listOptionValue builtIn="false" value="/usr/include/sdformat-4.1"/>
@@ -162,13 +190,19 @@
 								<option id="gnu.c.compiler.exe.release.option.debugging.level.973891917" name="Debug Level" superClass="gnu.c.compiler.exe.release.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.dialect.std.301300413" name="Language standard" superClass="gnu.c.compiler.option.dialect.std" value="gnu.c.compiler.dialect.c11" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.dialect.flags.262073373" name="Other dialect flags" superClass="gnu.c.compiler.option.dialect.flags" value="-pthread" valueType="string"/>
+								<option id="gnu.c.compiler.option.include.paths.359541372" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1676538104" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.1288919100" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release">
-								<option defaultValue="true" id="gnu.c.link.option.shared.1490883055" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
+								<option defaultValue="true" id="gnu.c.link.option.shared.228221127" name="Shared (-shared)" superClass="gnu.c.link.option.shared" valueType="boolean"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.235137893" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
 								<option id="gnu.cpp.link.option.libs.1687410995" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="repl-control"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="fcl-collisions"/>
 									<listOptionValue builtIn="false" value="gazebo"/>
 									<listOptionValue builtIn="false" value="gazebo_client"/>
 									<listOptionValue builtIn="false" value="gazebo_gui"/>
@@ -202,27 +236,43 @@
 									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="OgrePaging"/>
 								</option>
 								<option id="gnu.cpp.link.option.paths.379066284" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control/Release}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions/Release}&quot;"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu"/>
 									<listOptionValue builtIn="false" value="/usr/lib/x86_64-linux-gnu/gazebo-7/plugins"/>
 								</option>
-								<option id="gnu.cpp.link.option.shared.799977769" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" value="true" valueType="boolean"/>
+								<option defaultValue="true" id="gnu.cpp.link.option.shared.1350549492" name="Shared (-shared)" superClass="gnu.cpp.link.option.shared" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.326788019" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.release.1536259673" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.release">
+								<option id="gnu.both.asm.option.include.paths.1458731466" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/repl-control}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/fcl-collisions}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1097416820" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
 				</configuration>
 			</storageModule>
-			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
-			<storageModule moduleId="de.marw.cdt.cmake.core.settings">
-				<options/>
-				<defs/>
-				<undefs/>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+				<externalSettings containerId="fcl-collisions;cdt.managedbuild.config.gnu.cross.exe.release.530808502" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/fcl-collisions"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/fcl-collisions/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="fcl-collisions" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<externalSettings containerId="repl-control;cdt.managedbuild.config.gnu.exe.release.2133639031" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/repl-control"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/repl-control/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="repl-control" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
 			</storageModule>
 		</cconfiguration>
 	</storageModule>
@@ -248,10 +298,10 @@
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Debug">
-			<resource resourceType="PROJECT" workspacePath="/repl-control"/>
+			<resource resourceType="PROJECT" workspacePath="/fcl-collision-monitor"/>
 		</configuration>
 		<configuration configurationName="Release">
-			<resource resourceType="PROJECT" workspacePath="/repl-control"/>
+			<resource resourceType="PROJECT" workspacePath="/fcl-collision-monitor"/>
 		</configuration>
 	</storageModule>
 </cproject>
