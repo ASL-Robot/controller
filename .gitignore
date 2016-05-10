@@ -29,3 +29,6 @@
 
 # Backup files
 *~
+
+# Build output
+build

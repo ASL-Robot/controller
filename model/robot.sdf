@@ -2,6 +2,8 @@
 <sdf version="1.5">
 	<model name="aslr">
 		<static>false</static>
+		<plugin name="AslrRepl" filename="librepl_control.so" />
+		
 		<!-- links will collide with each other, though joined links won't -->
 		<self_collide>true</self_collide>
 		<pose>0 0 0 0 0 0</pose><!-- gazebo treats +Z as up -->

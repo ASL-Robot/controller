@@ -9,9 +9,11 @@ include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
-add_subdirectory(../repl-control/model_ctl ${CMAKE_CURRENT_BINARY_DIR}/model_ctl)
-add_subdirectory(../fcl-collisions ${CMAKE_CURRENT_BINARY_DIR}/fcl-collisions)
-include_directories(${CMAKE_CURRENT_BINARY_DIR}/model_ctl ../repl-control ../fcl-collisions)
+if (NOT COMBINED_BUILD)
+	add_subdirectory(../repl-control/model_ctl ${CMAKE_CURRENT_BINARY_DIR}/model_ctl)
+	add_subdirectory(../fcl-collisions ${CMAKE_CURRENT_BINARY_DIR}/fcl-collisions)
+endif()
+include_directories($<TARGET_PROPERTY:model_ctl,INCLUDE_DIRECTORIES> ../repl-control ../fcl-collisions)
 
 # compile client program
 add_executable(collision_monitor collide-mon.cpp)
